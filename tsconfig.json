@@ -26,7 +26,7 @@
 
     "synchronousWatchDirectory": true,
 
-    "excludeDirectories": ["node_modules", "**/lib"]
+    "excludeDirectories": ["node_modules", "**/lib", "logs"]
   },
   "include": ["src/**/*"]
 }

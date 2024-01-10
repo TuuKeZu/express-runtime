@@ -4,6 +4,9 @@ import { AnalyticsPacketType, AnalyticsPacket, MultipartNetworkRequestAnalytics 
 import { AnalyticsEngine } from './analytics-engine';
 import { ProcessConsole } from './process-console';
 
+import fs from 'node:fs';
+import path from 'node:path';
+
 export interface ProcessConfig {
     should_restart?: boolean,
     restart_delay?: number,
@@ -50,11 +53,12 @@ export class Process {
     }
 
     #respawnProcess = () => {
+        this.console.warn(`Restarting process in ${this.#config.restart_delay ?? 5000}ms...`);
         this.killProcess();
 
         setTimeout(() => {
             this.spawnProcess();
-        }, 5000); 
+        }, this.#config.restart_delay ?? 5000); 
     }
 
     #onLogData = (data: any) => {
@@ -63,6 +67,7 @@ export class Process {
 
     #onLogError = (data: any) => {
         this.console.error(data);
+        this.#exportError(data);
     }
 
     #onreceiveData = (data: any) => {
@@ -85,8 +90,24 @@ export class Process {
                 this.console.info("clean exit");
                 break;
             case 1:
+                if (!this.#config.should_restart) return console.error("Process crashed - process will not be restarted.")
                 this.#respawnProcess();
                 break;
         }
+    }
+
+    #exportError = (data: any) => {
+        const errorLogName = `error ${new Date().toLocaleDateString('Fi-fi', {
+            'day': '2-digit',
+            'month': '2-digit',
+            'year': 'numeric',
+            'hour': '2-digit',
+            'minute': '2-digit',
+            'second': '2-digit'
+        }).replaceAll('.', '-').replaceAll(' ', '_')}.txt`;
+
+        const errorLogPath = path.join('logs', errorLogName);
+
+        fs.writeFileSync(errorLogPath, data);
     }
 }

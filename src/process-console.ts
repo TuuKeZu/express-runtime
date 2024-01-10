@@ -32,6 +32,6 @@ export class ProcessConsole {
 
     error = (data: any) => {
         if (this.#silent) return;
-        console.log(chalk.gray(`[${this.#getDateTime}]:`), chalk.redBright(data));
+        console.log(chalk.gray(`[${this.#getDateTime()}]:`), chalk.redBright(data));
     }
 }

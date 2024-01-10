@@ -4,20 +4,36 @@ import { AnalyticsPacketType, AnalyticsPacket, MultipartNetworkRequestAnalytics 
 import { AnalyticsEngine } from './analytics-engine';
 import { ProcessConsole } from './process-console';
 
+export interface ProcessConfig {
+    should_restart?: boolean,
+    restart_delay?: number,
+    suppress_console?: boolean,
+}
+
 export class Process {
     process: ChildProcess | null = null;
     analytics: AnalyticsEngine;
     console: ProcessConsole;
+    
+    #config: ProcessConfig;
 
-    constructor() {
+    constructor(config: ProcessConfig) {
+        this.#config = config;
+
         this.console = new ProcessConsole();
         this.console.clear();
-        
+
         this.analytics = new AnalyticsEngine(this.console);
     }
 
     spawnProcess = (): [AnalyticsEngine, ProcessConsole] => {
+        if (this.#config.suppress_console) {
+            this.console.info("Running in silent mode");
+            this.console.suppress();
+        }
+
         this.console.info("Starting process...");
+
         this.process = fork(process_path, { 'stdio': ['ipc', 'pipe', 'pipe']});
 
         this.process.stdout?.on('data', this.#onLogData);
@@ -59,6 +75,7 @@ export class Process {
                 break; 
             default:
                 this.console.log(data);
+                break;
         }
     }
 

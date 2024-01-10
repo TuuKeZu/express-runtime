@@ -1,14 +1,10 @@
 import { AnalyticsEngine } from "./analytics-engine";
-import { Process } from "./process";
+import { Process, ProcessConfig } from "./process";
 
-
-
-
-const runProcess = () => {
-    return new Promise((resolve, reject) => {
-        const process = new Process();
-        process.spawnProcess();
-    });
+const config: ProcessConfig = {
+    should_restart: true,
+    restart_delay: 5000
 }
 
-runProcess();
+const process = new Process(config);
+process.spawnProcess();

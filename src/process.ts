@@ -1,6 +1,6 @@
 import { process_path } from './config.json';
 import { fork, ChildProcess } from 'node:child_process';
-import { AnalyticsPacketType, AnalyticsPacket, MultipartNetworkRequestAnalytics } from 'express-runtime-dependency';
+import { AnalyticsPacketType, AnalyticsPacket, MultipartNetworkRequestAnalytics } from '@tuukezu/express-runtime-dependency';
 import { AnalyticsEngine } from './analytics-engine';
 import { ProcessConsole } from './process-console';
 
@@ -13,8 +13,17 @@ export interface ProcessConfig {
     suppress_console?: boolean,
 }
 
+interface ProcessInfo {
+    path: string,
+    name: string,
+    version: string
+}
+
 export class Process {
     process: ChildProcess | null = null;
+    info: ProcessInfo | null = null;
+    active: boolean = false;
+
     analytics: AnalyticsEngine;
     console: ProcessConsole;
     
@@ -29,15 +38,18 @@ export class Process {
         this.analytics = new AnalyticsEngine(this.console);
     }
 
+
     spawnProcess = (): [AnalyticsEngine, ProcessConsole] => {
         if (this.#config.suppress_console) {
             this.console.info("Running in silent mode");
             this.console.suppress();
         }
-
-        this.console.info("Starting process...");
+        
+        this.info = this.#resolveProcessInfo();
+        this.console.info(`Starting '${this.info.name}@${this.info.version}'`);
 
         this.process = fork(process_path, { 'stdio': ['ipc', 'pipe', 'pipe']});
+        this.active = true;
 
         this.process.stdout?.on('data', this.#onLogData);
         this.process.stderr?.on('data', this.#onLogError);
@@ -47,9 +59,21 @@ export class Process {
         return [this.analytics, this.console];
     }
 
+    #resolveProcessInfo = (): ProcessInfo => {
+        const packagePath = path.join(process_path, 'package.json')
+        const data = JSON.parse(fs.readFileSync(packagePath, { 'encoding': 'utf-8' }));
+        
+        return {
+            path: process_path,
+            name: data['name'] ?? 'unknown',
+            version: data['version'] ?? 'unknown',
+        }
+    }
+
     killProcess = () => {
         this.process?.kill();
         this.process = null;
+        this.active = false;
     }
 
     #respawnProcess = () => {
@@ -85,6 +109,7 @@ export class Process {
     }
 
     #onClose = (code: number) => {
+        this.active = false;
         switch(code) {
             case 0:
                 this.console.info("clean exit");

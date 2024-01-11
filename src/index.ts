@@ -1,5 +1,8 @@
+import { AnalyticsAPIService } from "./analytics-api-service";
 import { AnalyticsEngine } from "./analytics-engine";
 import { Process, ProcessConfig } from "./process";
+
+import { port } from './config.json';
 
 const config: ProcessConfig = {
     should_restart: true,
@@ -7,4 +10,8 @@ const config: ProcessConfig = {
 }
 
 const process = new Process(config);
-process.spawnProcess();
+const [analytics, console] = process.spawnProcess();
+
+const service = new AnalyticsAPIService({ analytics, process, console });
+service.init();
+service.start(port);

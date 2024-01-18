@@ -5,6 +5,7 @@ import { Process } from './process';
 import { ProcessConsole } from './process-console';
 import Joi from 'joi';
 import { validateParams } from '@tuukezu/joi-express';
+import cors from 'cors';
 
 export interface AnalyticsAPIServiceConfig {
     analytics: AnalyticsEngine,
@@ -20,6 +21,8 @@ export class AnalyticsAPIService {
 
     constructor(config: AnalyticsAPIServiceConfig) {
         this.app = express();
+        this.app.use(cors());
+        
         this.analytics = config.analytics;
         this.process = config.process;
         this.console = config.console;
@@ -29,22 +32,22 @@ export class AnalyticsAPIService {
 
     init = () => {
         this.app.get('/version', (req: Request, res: Response) => {
-            if (!this.process.active) return res.status(500).json({ err: 'Service is not currentrly running', status: 500 });
+            if (!this.process.active) return res.status(500).json({ err: 'Service is not currently running', status: 500 });
             res.json(this.process.info?.version);
         });
 
         this.app.get('/statistics/latest', (req: Request, res: Response) => {
-            if (!this.process.active) return res.status(500).json({ err: 'Service is not currentrly running', status: 500 });
+            if (!this.process.active) return res.status(500).json({ err: 'Service is not currently running', status: 500 });
             res.json(this.analytics.getLatest());
         });
 
         this.app.get('/statistics/hourly', (req: Request, res: Response) => {
-            if (!this.process.active) return res.status(500).json({ err: 'Service is not currentrly running', status: 500 });
+            if (!this.process.active) return res.status(500).json({ err: 'Service is not currently running', status: 500 });
             res.json(this.analytics.getHourly());
         });
 
         this.app.get('/statistics/:date', (req: Request, res: Response) => {
-            if (!this.process.active) return res.status(500).json({ err: 'Service is not currentrly running', status: 500 });
+            if (!this.process.active) return res.status(500).json({ err: 'Service is not currently running', status: 500 });
 
             const params = Joi.object({
                 date: Joi.date().required(),

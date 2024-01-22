@@ -3,17 +3,17 @@ import { AnalyticsPacket, AnalyticsPacketType, MultipartNetworkRequestAnalytics,
 import fs from 'node:fs';
 import path from 'node:path';
 import { ProcessConsole } from "./process-console";
-import { LogHistory } from "./analytics/logs";
+import { LogData, LogHistory } from "./analytics/logs";
 import { Statistics, StatisticsResponse, StatisticsWrapper } from "./analytics/statistics";
 
 
 export interface AnalyticsEngineConfig {
     console: ProcessConsole,
-    disableLogs?: boolean,
+    disable_logs?: boolean,
 }
 
 export class AnalyticsEngine {
-    TICK_TIME = 30 * 100;
+    TICK_TIME = 30 * 1000;
 
     #runtime: NodeJS.Timeout;
     #console: ProcessConsole;
@@ -21,7 +21,7 @@ export class AnalyticsEngine {
     #tick: number;
     #disableLogs: boolean;
 
-
+    history: LogData;
     requestBuffer: AnalyticsPacket[] = [];
 
     latestStatistics: Statistics[] = [];
@@ -34,14 +34,21 @@ export class AnalyticsEngine {
         this.#runtime = setInterval(this.#onTick, this.TICK_TIME);
         this.#console = config.console;
         this.#tick = (new Date().getHours() * 60 * 2) + (new Date().getMinutes() * 2) + Math.floor(new Date().getSeconds() / 30);
-        this.#disableLogs = config.disableLogs ?? false;
-        this.#logHistory = new LogHistory().generate('./logs');
-        
-        if (this.#disableLogs) this.#console.warn("Running in no-logs-mode");
-        if (!fs.existsSync(path.join('./logs'))) this.#console.warn("Missing './logs' directory");
 
+        this.#disableLogs = config.disable_logs ?? false;
+
+        this.#logHistory = new LogHistory().generate('./logs');
+        this.history = this.#logHistory.averageTimings();
+        
+        if (!fs.existsSync(path.join('./logs'))) this.#console.warn("Missing './logs' directory");
+        if (this.#disableLogs) this.#console.warn("Running in no-logs mode");
+
+        
         this.#console.info("Running analytics engine");
         this.#console.log(`Syncing analytics-engine: Skipped '${this.#tick}' ticks (${Math.floor(this.#tick / 2 / 60)}h ${(this.#tick / 2) % 60}min)'`)
+        this.#console.log(`Calculating average timings from log history:`);
+        this.#console.log(`> ${this.history.overview.totalRequests.toFixed(0)} requests on average`);
+        this.#console.log(`> ${this.history.timings.averageHandleTime.toFixed(2)}ms (+${this.history.timings.averageProcessTime.toFixed(2)}ms) on average`);
     }
 
     #onTick = () => {
@@ -56,7 +63,7 @@ export class AnalyticsEngine {
     }
 
     #on30sTick = () => {
-        const statistics = new Statistics().fromRequestBuffer(this.requestBuffer);
+        const statistics = new Statistics(this).fromRequestBuffer(this.requestBuffer);
         this.latestStatistics.push(statistics);
         
         this.latestStatisticsHistory.push(statistics.format());
@@ -74,7 +81,7 @@ export class AnalyticsEngine {
     #onHourTick = () => {
         if (this.latestStatistics.length <= 0) return;
 
-        const statistics = new Statistics().fromStatisticsBuffer(this.latestStatistics);
+        const statistics = new Statistics(this).fromStatisticsBuffer(this.latestStatistics);
         if (!this.#disableLogs) statistics.export(this.#resolveLogPath(), 'hourly');
 
         
@@ -89,15 +96,17 @@ export class AnalyticsEngine {
     #onDayTick = () => {
         if (this.hourlyStatistics.length <= 0) return;
 
-        const statistics = new Statistics().fromStatisticsBuffer(this.hourlyStatistics);
+        const statistics = new Statistics(this).fromStatisticsBuffer(this.hourlyStatistics);
         if (!this.#disableLogs) statistics.export(`${this.#resolveLogPath(new Date(), true)}-overview.json`, 'overview');
         
         this.#console.info("Exporting statistics gathered during the last 24h");
         this.#console.log(`${statistics.totalrequests} requests in total`);
 
         this.hourlyStatistics = [];
-        
-        this.#tick = 0;
+        this.#tick = (new Date().getHours() * 60 * 2) + (new Date().getMinutes() * 2) + Math.floor(new Date().getSeconds() / 30);
+
+        this.#logHistory = new LogHistory().generate('./logs');
+        this.history = this.#logHistory.averageTimings();
     }
 
     getLatest = (): StatisticsResponse => {
@@ -122,11 +131,15 @@ export class AnalyticsEngine {
         };
     }
     
-    getRequestsPerWeekday = () => {
-        return this.#logHistory.requestsPerWeekday();
+    getRequestsPerWeekday = (auth: boolean) => {
+        return this.#logHistory.requestsPerWeekday(!auth);
+    }
+    
+    getStatisticsPerDay = (auth: boolean) => {
+        return this.#logHistory.statisticsPerDay(!auth);
     }
 
-    getRequestsPerDay = () => {
-        return this.#logHistory.requestsPerDay();
+    getRequestsPerDay = (auth: boolean) => {
+        return this.#logHistory.requestsPerDay(!auth);
     }
 }

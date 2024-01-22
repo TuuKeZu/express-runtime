@@ -1,17 +1,29 @@
-import { AnalyticsAPIService } from "./analytics-api-service";
+import { AnalyticsAPIService, AnalyticsAPIServiceConfig } from "./analytics-api-service";
 import { AnalyticsEngine } from "./analytics-engine";
 import { Process, ProcessConfig } from "./process";
 
-import { port } from './config.json';
+import { 
+    port,
+    restart_delay,
+    require_api_key,
+    should_restart 
+} from './config.json';
 
-const config: ProcessConfig = {
-    should_restart: true,
-    restart_delay: 5000
+const processConfig: ProcessConfig = {
+    should_restart,
+    restart_delay,
 }
 
-const process = new Process(config);
+const process = new Process(processConfig);
 const [analytics, console] = process.spawnProcess();
 
-const service = new AnalyticsAPIService({ analytics, process, console });
+const serviceConfig: AnalyticsAPIServiceConfig = {
+    analytics,
+    process,
+    console,
+    require_api_key,
+}
+const service = new AnalyticsAPIService(serviceConfig);
+
 service.init();
 service.start(port);

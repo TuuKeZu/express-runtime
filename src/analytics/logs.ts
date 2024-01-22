@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { StatisticsWrapper } from './statistics';
 
 export interface LogDataOverview {
     totalRequests: number,
@@ -84,22 +85,28 @@ export class LogHistory {
             'Wednesday',
             'Thursday',
             'Friday',
-            'Saturday'
+            'Saturday',
         ];
 
-        const map: { [key: string]: LogData[] } = {};
+        const map: { [key: string]: LogData[] } = {
+            'Monday': [],
+            'Tuesday': [],
+            'Wednesday': [],
+            'Thursday': [],
+            'Friday': [],
+            'Saturday': [],
+            'Sunday': [],
+        };
 
         this.historyMap.forEach(({ date, data }) => {
             const weekday = date.getDay();
-            if (!map[weekdays[weekday]]) map[weekdays[weekday]] = [];
-
             map[weekdays[weekday]].push(data);
         });
 
         return map;
     }
 
-    requestsPerWeekday = (): { [key: string]: number } => {
+    requestsPerWeekday = (normalize?: boolean): { [key: string]: number } => {
         const map = this.mapByWeekday();
         const result: { [key: string]: number } = {};
 
@@ -112,12 +119,33 @@ export class LogHistory {
             });
             
             result[weekday] /= list.length;
-        }); 
+        });
+
+        if (normalize) {
+            const s = Object.values(result).reduce((a, v) =>  a + v, 0);
+            Object.keys(result).forEach(weekday => {
+                result[weekday] = +((result[weekday] / s)).toFixed(2);
+            });
+        }
 
         return result;
     }
 
-    requestsPerDay = (): { date: Date, totalRequests: number }[] => {
+    statisticsPerDay = (normalize?: boolean): any => {
+        if (normalize) {
+            return this.historyMap.map(data => ({
+                date: data.date,
+                data: {
+                    ...data.data.timings,
+                    errorPercentage: data.data.overview.errorPercentage,
+                }
+            }));
+        }
+        
+        return this.historyMap;
+    }
+
+    requestsPerDay = (normalize?: boolean): { date: Date, totalRequests: number }[] => {
         var result: { date: Date, totalRequests: number }[] = [];
         
         this.historyMap.forEach(({ date, data }) => {
@@ -133,25 +161,50 @@ export class LogHistory {
             });
         });
 
+        if (normalize) {
+            const s = result.reduce((a, v) => a + v.totalRequests, 0);
+            for (let i = 0; i < result.length; i++) {
+                const data = result[i];
+                data.totalRequests = +((data.totalRequests / s)).toFixed(2);
+            }
+        }
+
         return result;
     }
 
-    averageTimings = (): logDataTimings => {
-        const result: logDataTimings = {
-            averageTotalTime: 0,
-            averageHandleTime: 0,
-            averageProcessTime: 0
+    averageTimings = (): LogData => {
+        const result: LogData = {
+            overview: {
+                totalRequests: 0,
+                totalErrors: 0,
+                errorPercentage: 0
+            },
+            timings: {
+                averageTotalTime: 0,
+                averageHandleTime: 0,
+                averageProcessTime: 0
+            },
+            errorMap: {}
         };
 
         this.historyMap.forEach(({ date, data}) => {
-           result.averageTotalTime += data.timings.averageTotalTime;
-           result.averageHandleTime += data.timings.averageHandleTime;
-           result.averageProcessTime += data.timings.averageProcessTime;
+            
+            result.overview.totalRequests += data.overview.totalRequests;
+            result.overview.totalErrors += data.overview.totalErrors;
+            result.overview.errorPercentage += data.overview.errorPercentage;
+
+            result.timings.averageTotalTime += data.timings.averageTotalTime;
+            result.timings.averageHandleTime += data.timings.averageHandleTime;
+            result.timings.averageProcessTime += data.timings.averageProcessTime;
         });
 
-        result.averageTotalTime /= this.historyMap.length;
-        result.averageHandleTime /= this.historyMap.length;
-        result.averageProcessTime /= this.historyMap.length;
+        result.timings.averageTotalTime /= this.historyMap.length;
+        result.timings.averageHandleTime /= this.historyMap.length;
+        result.timings.averageProcessTime /= this.historyMap.length;
+
+        result.overview.totalRequests /= this.historyMap.length;
+        result.overview.totalErrors /= this.historyMap.length;
+        result.overview.errorPercentage /= this.historyMap.length;
 
         return result;
     }

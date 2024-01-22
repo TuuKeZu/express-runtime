@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { AnalyticsPacket, AnalyticsPacketType, MultipartNetworkRequestAnalytics } from "@tuukezu/express-runtime-dependency";
-import { LogHistory } from './logs';
+import { LogData, LogHistory } from './logs';
+import { AnalyticsEngine } from '../analytics-engine';
 
 export interface StatisticsWrapper {
     timeStamp: Date,
@@ -22,6 +23,7 @@ export class Statistics {
     DEFAULT_HANDLE_TIME = 150;
     DEFAULT_PRCOESS_TIME = 15;
     DEFAULT_ERROR_PERCENTAGE = 0.035;
+
     #startTimestamp: Date = new Date();
     #endTimeStamp: Date | null = null;
 
@@ -45,10 +47,10 @@ export class Statistics {
 
     #errorMap: { [key: number]: number } = {};
 
-    constructor() {
-        const { averageTotalTime, averageHandleTime, averageProcessTime } = new LogHistory().generate('./logs').averageTimings();
-        this.DEFAULT_PRCOESS_TIME = averageProcessTime;
-        this.DEFAULT_HANDLE_TIME = averageHandleTime;
+    constructor(engine: AnalyticsEngine) {
+        this.DEFAULT_PRCOESS_TIME = engine.history.timings.averageProcessTime;
+        this.DEFAULT_HANDLE_TIME = engine.history.timings.averageHandleTime;
+        this.DEFAULT_ERROR_PERCENTAGE = engine.history.overview.errorPercentage
     }
 
     fromRequestBuffer = (buffer: AnalyticsPacket[]): Statistics => {

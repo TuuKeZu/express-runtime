@@ -46,22 +46,15 @@ export class AnalyticsAPIService {
             res.json(this.analytics.getHourly());
         });
 
-        this.app.get('/statistics/:date', (req: Request, res: Response) => {
+        this.app.get('/statistics/requests', (req: Request, res: Response) => {
             if (!this.process.active) return res.status(500).json({ err: 'Service is not currently running', status: 500 });
+            res.json(this.analytics.getRequestsPerDay());
+        });
 
-            const params = Joi.object({
-                date: Joi.date().required(),
-            });
 
-            const request = validateParams(req, res, params);
-            if (!request) return;
-            this.analytics.getHistory(request.date)
-            .then(data => {
-                res.json(data);
-            })
-            .catch(err => {
-                return res.status(err.status ?? 500).json(err);
-            })
+        this.app.get('/statistics/requests/weekday', (req: Request, res: Response) => {
+            if (!this.process.active) return res.status(500).json({ err: 'Service is not currently running', status: 500 });
+            res.json(this.analytics.getRequestsPerWeekday());
         });
     }
 

@@ -1,0 +1,900 @@
+{
+    "overview": {
+        "23:01:53 - 0:00:37": {
+            "overview": {
+                "totalRequests": 1170,
+                "totalErrors": 253,
+                "errorPercentage": 0.22
+            },
+            "timings": {
+                "averageTotalTime": 16.04,
+                "averageHandleTime": 306.15,
+                "averageProcessTime": 18.66
+            },
+            "errorMap": {
+                "401": 127,
+                "403": 125,
+                "500": 1
+            }
+        }
+    },
+    "hourly": {
+        "23:02:05 - 1:00:40": null,
+        "1:01:10 - 2:00:44": null,
+        "2:01:14 - 3:00:47": null,
+        "3:01:17 - 4:00:50": null,
+        "4:01:20 - 5:00:53": null,
+        "5:01:23 - 6:00:56": null,
+        "6:01:26 - 7:00:58": {
+            "overview": {
+                "totalRequests": 127,
+                "totalErrors": 13,
+                "errorPercentage": 0.1
+            },
+            "timings": {
+                "averageTotalTime": 38.17,
+                "averageHandleTime": 268.3,
+                "averageProcessTime": 17.97
+            },
+            "errorMap": {
+                "401": 9,
+                "403": 4
+            }
+        },
+        "7:01:28 - 8:01:01": {
+            "overview": {
+                "totalRequests": 117,
+                "totalErrors": 25,
+                "errorPercentage": 0.21
+            },
+            "timings": {
+                "averageTotalTime": 39.24,
+                "averageHandleTime": 262.53,
+                "averageProcessTime": 14.48
+            },
+            "errorMap": {
+                "401": 12,
+                "403": 13
+            }
+        },
+        "8:01:31 - 9:01:04": {
+            "overview": {
+                "totalRequests": 391,
+                "totalErrors": 65,
+                "errorPercentage": 0.17
+            },
+            "timings": {
+                "averageTotalTime": 107.3,
+                "averageHandleTime": 291.64,
+                "averageProcessTime": 14.94
+            },
+            "errorMap": {
+                "401": 28,
+                "403": 37
+            }
+        },
+        "9:01:34 - 10:01:07": {
+            "overview": {
+                "totalRequests": 13,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 5.23,
+                "averageHandleTime": 293.75,
+                "averageProcessTime": 19.97
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 10/27/55 - 18/01/2024 10/29/00": {
+            "overview": {
+                "totalRequests": 54,
+                "totalErrors": 10,
+                "errorPercentage": 0.19
+            },
+            "timings": {
+                "averageTotalTime": 39.47,
+                "minMaxTotalTime": [
+                    49,
+                    498
+                ],
+                "averageHandleTime": 239.71,
+                "minMaxHandleTime": [
+                    21,
+                    436
+                ],
+                "averageProcessTime": 16.87,
+                "minMaxprocessTime": [
+                    1,
+                    412
+                ]
+            },
+            "errorMap": {
+                "401": 5,
+                "403": 5
+            }
+        },
+        "18/01/2024 10/31/45 - 18/01/2024 10/32/41": {
+            "overview": {
+                "totalRequests": 39,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 60,
+                "minMaxTotalTime": [
+                    236,
+                    556
+                ],
+                "averageHandleTime": 164.32,
+                "minMaxHandleTime": [
+                    13,
+                    505
+                ],
+                "averageProcessTime": 177.69,
+                "minMaxprocessTime": [
+                    3,
+                    475
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 10/32/42 - 18/01/2024 10/34/41": {
+            "overview": {
+                "totalRequests": 19,
+                "totalErrors": 8,
+                "errorPercentage": 0.42
+            },
+            "timings": {
+                "averageTotalTime": 8.89,
+                "minMaxTotalTime": [
+                    205,
+                    518
+                ],
+                "averageHandleTime": 333.63,
+                "minMaxHandleTime": [
+                    41,
+                    518
+                ],
+                "averageProcessTime": 22.04,
+                "minMaxprocessTime": [
+                    3,
+                    219
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 10/34/42 - 18/01/2024 10/36/42": {
+            "overview": {
+                "totalRequests": 11,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 12.13,
+                "minMaxTotalTime": [
+                    194,
+                    697
+                ],
+                "averageHandleTime": 330.79,
+                "minMaxHandleTime": [
+                    79,
+                    690
+                ],
+                "averageProcessTime": 32.96,
+                "minMaxprocessTime": [
+                    1,
+                    278
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 10/36/43 - 18/01/2024 10/38/42": {
+            "overview": {
+                "totalRequests": 9,
+                "totalErrors": 8,
+                "errorPercentage": 0.89
+            },
+            "timings": {
+                "averageTotalTime": 3.7,
+                "minMaxTotalTime": [
+                    274,
+                    514
+                ],
+                "averageHandleTime": 420.22,
+                "minMaxHandleTime": [
+                    62,
+                    514
+                ],
+                "averageProcessTime": 23.56,
+                "minMaxprocessTime": [
+                    null,
+                    212
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 10/38/43 - 18/01/2024 10/40/42": {
+            "overview": {
+                "totalRequests": 3,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 1.8,
+                "minMaxTotalTime": [
+                    192,
+                    233
+                ],
+                "averageHandleTime": 210,
+                "minMaxHandleTime": [
+                    188,
+                    229
+                ],
+                "averageProcessTime": 6.33,
+                "minMaxprocessTime": [
+                    4,
+                    11
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 10/40/43 - 18/01/2024 10/42/42": {
+            "overview": {
+                "totalRequests": 3,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 1.63,
+                "minMaxTotalTime": [
+                    182,
+                    213
+                ],
+                "averageHandleTime": 190.33,
+                "minMaxHandleTime": [
+                    177,
+                    208
+                ],
+                "averageProcessTime": 4.67,
+                "minMaxprocessTime": [
+                    4,
+                    5
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 10/42/43 - 18/01/2024 10/44/42": null,
+        "18/01/2024 10/44/43 - 18/01/2024 10/46/42": null,
+        "18/01/2024 10/46/43 - 18/01/2024 10/48/42": null,
+        "18/01/2024 10/48/43 - 18/01/2024 10/50/43": null,
+        "18/01/2024 10/50/44 - 18/01/2024 10/52/43": {
+            "overview": {
+                "totalRequests": 21,
+                "totalErrors": 2,
+                "errorPercentage": 0.1
+            },
+            "timings": {
+                "averageTotalTime": 13.41,
+                "minMaxTotalTime": [
+                    185,
+                    649
+                ],
+                "averageHandleTime": 257.27,
+                "minMaxHandleTime": [
+                    77,
+                    639
+                ],
+                "averageProcessTime": 10.85,
+                "minMaxprocessTime": [
+                    2,
+                    234
+                ]
+            },
+            "errorMap": {
+                "401": 2
+            }
+        },
+        "18/01/2024 10/52/44 - 18/01/2024 10/54/43": {
+            "overview": {
+                "totalRequests": 30,
+                "totalErrors": 8,
+                "errorPercentage": 0.27
+            },
+            "timings": {
+                "averageTotalTime": 17.5,
+                "minMaxTotalTime": [
+                    186,
+                    549
+                ],
+                "averageHandleTime": 248.35,
+                "minMaxHandleTime": [
+                    19,
+                    544
+                ],
+                "averageProcessTime": 14.22,
+                "minMaxprocessTime": [
+                    2,
+                    205
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 10/54/44 - 18/01/2024 10/56/43": null,
+        "18/01/2024 10/56/44 - 18/01/2024 11/00/41": {
+            "overview": {
+                "totalRequests": 10,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 2.34,
+                "minMaxTotalTime": [
+                    174,
+                    509
+                ],
+                "averageHandleTime": 256.5,
+                "minMaxHandleTime": [
+                    46,
+                    504
+                ],
+                "averageProcessTime": 21.67,
+                "minMaxprocessTime": [
+                    1,
+                    199
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/00/42 - 18/01/2024 11/02/41": {
+            "overview": {
+                "totalRequests": 13,
+                "totalErrors": 2,
+                "errorPercentage": 0.15
+            },
+            "timings": {
+                "averageTotalTime": 13.08,
+                "minMaxTotalTime": [
+                    175,
+                    275
+                ],
+                "averageHandleTime": 211.74,
+                "minMaxHandleTime": [
+                    175,
+                    271
+                ],
+                "averageProcessTime": 12.55,
+                "minMaxprocessTime": [
+                    4,
+                    41
+                ]
+            },
+            "errorMap": {
+                "403": 2
+            }
+        },
+        "18/01/2024 11/02/42 - 18/01/2024 11/04/42": {
+            "overview": {
+                "totalRequests": 9,
+                "totalErrors": 8,
+                "errorPercentage": 0.89
+            },
+            "timings": {
+                "averageTotalTime": 3.7,
+                "minMaxTotalTime": [
+                    281,
+                    506
+                ],
+                "averageHandleTime": 422.67,
+                "minMaxHandleTime": [
+                    84,
+                    506
+                ],
+                "averageProcessTime": 21.89,
+                "minMaxprocessTime": [
+                    null,
+                    197
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 11/04/43 - 18/01/2024 11/06/42": {
+            "overview": {
+                "totalRequests": 24,
+                "totalErrors": 8,
+                "errorPercentage": 0.33
+            },
+            "timings": {
+                "averageTotalTime": 17.18,
+                "minMaxTotalTime": [
+                    190,
+                    601
+                ],
+                "averageHandleTime": 326.24,
+                "minMaxHandleTime": [
+                    69,
+                    597
+                ],
+                "averageProcessTime": 17.36,
+                "minMaxprocessTime": [
+                    3,
+                    219
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 11/06/43 - 18/01/2024 11/08/42": null,
+        "18/01/2024 11/08/43 - 18/01/2024 11/10/42": {
+            "overview": {
+                "totalRequests": 12,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 6.93,
+                "minMaxTotalTime": [
+                    194,
+                    576
+                ],
+                "averageHandleTime": 263.87,
+                "minMaxHandleTime": [
+                    56,
+                    550
+                ],
+                "averageProcessTime": 13.24,
+                "minMaxprocessTime": [
+                    2,
+                    193
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/10/43 - 18/01/2024 11/12/42": {
+            "overview": {
+                "totalRequests": 26,
+                "totalErrors": 8,
+                "errorPercentage": 0.31
+            },
+            "timings": {
+                "averageTotalTime": 13.32,
+                "minMaxTotalTime": [
+                    190,
+                    498
+                ],
+                "averageHandleTime": 253.85,
+                "minMaxHandleTime": [
+                    43,
+                    489
+                ],
+                "averageProcessTime": 12.55,
+                "minMaxprocessTime": [
+                    1,
+                    182
+                ]
+            },
+            "errorMap": {
+                "401": 3,
+                "403": 5
+            }
+        },
+        "18/01/2024 11/12/43 - 18/01/2024 11/14/42": {
+            "overview": {
+                "totalRequests": 24,
+                "totalErrors": 8,
+                "errorPercentage": 0.33
+            },
+            "timings": {
+                "averageTotalTime": 13.09,
+                "minMaxTotalTime": [
+                    185,
+                    446
+                ],
+                "averageHandleTime": 250.26,
+                "minMaxHandleTime": [
+                    37,
+                    439
+                ],
+                "averageProcessTime": 11.47,
+                "minMaxprocessTime": [
+                    1,
+                    173
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 11/14/43 - 18/01/2024 11/16/42": null,
+        "18/01/2024 11/16/43 - 18/01/2024 11/18/42": null,
+        "18/01/2024 11/18/43 - 18/01/2024 11/20/43": null,
+        "18/01/2024 11/20/44 - 18/01/2024 11/22/43": {
+            "overview": {
+                "totalRequests": 1,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 1.64,
+                "minMaxTotalTime": [
+                    197,
+                    197
+                ],
+                "averageHandleTime": 196,
+                "minMaxHandleTime": [
+                    196,
+                    196
+                ],
+                "averageProcessTime": 1,
+                "minMaxprocessTime": [
+                    1,
+                    1
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/22/44 - 18/01/2024 11/24/43": {
+            "overview": {
+                "totalRequests": 1,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 1.6,
+                "minMaxTotalTime": [
+                    192,
+                    192
+                ],
+                "averageHandleTime": 191,
+                "minMaxHandleTime": [
+                    191,
+                    191
+                ],
+                "averageProcessTime": 1,
+                "minMaxprocessTime": [
+                    1,
+                    1
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/24/44 - 18/01/2024 11/26/43": null,
+        "18/01/2024 11/26/44 - 18/01/2024 11/28/43": null,
+        "18/01/2024 11/28/44 - 18/01/2024 11/30/43": {
+            "overview": {
+                "totalRequests": 9,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 3.98,
+                "minMaxTotalTime": [
+                    262,
+                    584
+                ],
+                "averageHandleTime": 444,
+                "minMaxHandleTime": [
+                    71,
+                    574
+                ],
+                "averageProcessTime": 33.22,
+                "minMaxprocessTime": [
+                    1,
+                    191
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/30/44 - 18/01/2024 11/32/43": {
+            "overview": {
+                "totalRequests": 45,
+                "totalErrors": 17,
+                "errorPercentage": 0.38
+            },
+            "timings": {
+                "averageTotalTime": 24.74,
+                "minMaxTotalTime": [
+                    176,
+                    576
+                ],
+                "averageHandleTime": 314.73,
+                "minMaxHandleTime": [
+                    46,
+                    560
+                ],
+                "averageProcessTime": 15.19,
+                "minMaxprocessTime": [
+                    2,
+                    193
+                ]
+            },
+            "errorMap": {
+                "401": 9,
+                "403": 8
+            }
+        },
+        "18/01/2024 11/32/44 - 18/01/2024 11/34/44": {
+            "overview": {
+                "totalRequests": 33,
+                "totalErrors": 9,
+                "errorPercentage": 0.27
+            },
+            "timings": {
+                "averageTotalTime": 16.52,
+                "minMaxTotalTime": [
+                    176,
+                    497
+                ],
+                "averageHandleTime": 236.6,
+                "minMaxHandleTime": [
+                    45,
+                    497
+                ],
+                "averageProcessTime": 11.25,
+                "minMaxprocessTime": [
+                    2,
+                    214
+                ]
+            },
+            "errorMap": {
+                "401": 5,
+                "403": 4
+            }
+        },
+        "18/01/2024 11/34/45 - 18/01/2024 11/36/44": {
+            "overview": {
+                "totalRequests": 3,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 3.77,
+                "minMaxTotalTime": [
+                    216,
+                    237
+                ],
+                "averageHandleTime": 214.75,
+                "minMaxHandleTime": [
+                    205,
+                    232
+                ],
+                "averageProcessTime": 11.5,
+                "minMaxprocessTime": [
+                    5,
+                    15
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/36/45 - 18/01/2024 11/38/44": {
+            "overview": {
+                "totalRequests": 3,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 1.92,
+                "minMaxTotalTime": [
+                    214,
+                    259
+                ],
+                "averageHandleTime": 226,
+                "minMaxHandleTime": [
+                    210,
+                    254
+                ],
+                "averageProcessTime": 4.67,
+                "minMaxprocessTime": [
+                    4,
+                    5
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/38/45 - 18/01/2024 11/40/44": null,
+        "18/01/2024 11/40/45 - 18/01/2024 11/42/44": null,
+        "18/01/2024 11/42/45 - 18/01/2024 11/44/44": {
+            "overview": {
+                "totalRequests": 9,
+                "totalErrors": 8,
+                "errorPercentage": 0.89
+            },
+            "timings": {
+                "averageTotalTime": 3.36,
+                "minMaxTotalTime": [
+                    245,
+                    465
+                ],
+                "averageHandleTime": 381.56,
+                "minMaxHandleTime": [
+                    51,
+                    465
+                ],
+                "averageProcessTime": 21.56,
+                "minMaxprocessTime": [
+                    null,
+                    194
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 11/44/45 - 18/01/2024 11/48/43": {
+            "overview": {
+                "totalRequests": 84,
+                "totalErrors": 11,
+                "errorPercentage": 0.13
+            },
+            "timings": {
+                "averageTotalTime": 27.13,
+                "minMaxTotalTime": [
+                    181,
+                    560
+                ],
+                "averageHandleTime": 253.75,
+                "minMaxHandleTime": [
+                    37,
+                    543
+                ],
+                "averageProcessTime": 15.31,
+                "minMaxprocessTime": [
+                    1,
+                    211
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 7
+            }
+        },
+        "18/01/2024 11/48/44 - 18/01/2024 11/50/43": {
+            "overview": {
+                "totalRequests": 24,
+                "totalErrors": 8,
+                "errorPercentage": 0.33
+            },
+            "timings": {
+                "averageTotalTime": 17.94,
+                "minMaxTotalTime": [
+                    184,
+                    702
+                ],
+                "averageHandleTime": 256.64,
+                "minMaxHandleTime": [
+                    16,
+                    695
+                ],
+                "averageProcessTime": 50.83,
+                "minMaxprocessTime": [
+                    3,
+                    200
+                ]
+            },
+            "errorMap": {
+                "401": 4,
+                "403": 4
+            }
+        },
+        "18/01/2024 11/50/44 - 18/01/2024 11/52/43": {
+            "overview": {
+                "totalRequests": 4,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 3.69,
+                "minMaxTotalTime": [
+                    201,
+                    249
+                ],
+                "averageHandleTime": 211,
+                "minMaxHandleTime": [
+                    196,
+                    232
+                ],
+                "averageProcessTime": 10.25,
+                "minMaxprocessTime": [
+                    5,
+                    17
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/53/24 - 18/01/2024 11/53/37": null,
+        "18/01/2024 11/54/44 - 18/01/2024 11/54/54": {
+            "overview": {
+                "totalRequests": 9,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 54.05,
+                "minMaxTotalTime": [
+                    501,
+                    698
+                ],
+                "averageHandleTime": 509.22,
+                "minMaxHandleTime": [
+                    41,
+                    677
+                ],
+                "averageProcessTime": 85.33,
+                "minMaxprocessTime": [
+                    4,
+                    567
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 11/57/06 - 18/01/2024 12/00/06": {
+            "overview": {
+                "totalRequests": 35,
+                "totalErrors": 0,
+                "errorPercentage": 0
+            },
+            "timings": {
+                "averageTotalTime": 117.78,
+                "minMaxTotalTime": [
+                    205,
+                    750
+                ],
+                "averageHandleTime": 208.85,
+                "minMaxHandleTime": [
+                    14,
+                    534
+                ],
+                "averageProcessTime": 65.96,
+                "minMaxprocessTime": [
+                    4,
+                    547
+                ]
+            },
+            "errorMap": {}
+        },
+        "18/01/2024 12/00/36 - 18/01/2024 13/00/08": {
+            "overview": {
+                "totalRequests": 145,
+                "totalErrors": 23,
+                "errorPercentage": 0.16
+            },
+            "timings": {
+                "averageTotalTime": 48.31,
+                "minMaxTotalTime": [
+                    179,
+                    618
+                ],
+                "averageHandleTime": 274.85,
+                "minMaxHandleTime": [
+                    37,
+                    616
+                ],
+                "averageProcessTime": 14.99,
+                "minMaxprocessTime": [
+                    2,
+                    220
+                ]
+            },
+            "errorMap": {
+                "401": 9,
+                "403": 14
+            }
+        }
+    }
+}

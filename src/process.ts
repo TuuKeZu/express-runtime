@@ -37,7 +37,7 @@ export class Process {
 
         this.analytics = new AnalyticsEngine({
             console: this.console,
-            disable_logs: true,
+            disable_logs: false,
         });
     }
 

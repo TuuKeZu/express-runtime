@@ -103,7 +103,7 @@ export class AnalyticsEngine {
         this.#console.log(`${statistics.totalrequests} requests in total`);
 
         this.hourlyStatistics = [];
-        this.#tick = (new Date().getHours() * 60 * 2) + (new Date().getMinutes() * 2) + Math.floor(new Date().getSeconds() / 30);
+        this.#tick = 0;
 
         this.#logHistory = new LogHistory().generate('./logs');
         this.history = this.#logHistory.averageTimings();
